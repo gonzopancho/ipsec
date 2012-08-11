@@ -1,7 +1,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     <!--title></title-->
-    <style> body { padding-top: 60px; } form { margin-bottom:0px; } </style>
+
 </head>
 
 <body>
@@ -13,20 +13,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="">comcure</a>
+                <a class="brand" href="/">comcure</a>
                 <div class="nav-collapse">
                     <ul class="nav">
-                        <li class="active"><a href="">Home</a></li>
-                        <li><a href="user/security">Security</a></li>
-                        <li><a href="user/history">History</a></li>
-                        <li><a href="site/logout">Logout</a></li>
-                        <li class="active"><a href="site/index">Login</a></li>
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="/security">Security</a></li>
+                        <li><a href="/history">History</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <!--li class="active"><a href="/login">Login</a></li-->
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </div>
         <div class="container">
-            {{> login}}
+            {{> content}}
         </div>
     </div>
 </body>
+
+<template name="content">
+    {{#if content_is "index"}} index! {{/if}}
+    {{#if content_is "security"}} {{> security}} {{/if}}
+    {{#if content_is "history"}} {{> history}} {{/if}}
+</template>
