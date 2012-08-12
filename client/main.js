@@ -1,33 +1,51 @@
 
-var AppRouter = Backbone.Router.extend({
-    routes: {
-        '': 'index',
-        'security': 'security',
-        'history': 'history',
-        'logout': 'logout'
-    },
-    logout: function () {
-        console.log('logout');
-    },
-    index: function () {
-        console.log('index');
-        Session.set('content', 'index');
-    },
-    security: function () {
-        console.log('security');
-        Session.set('content', 'security');
-    },
-    history: function () {
-        console.log('history');
-        Session.set('content', 'history');
+LayoutRouter = Backbone.Router.extend({
+    render: function (template, data) {
+        document.getElementById('layout_content').innerHTML = "";
+        
+        template = template?template:"index";
+        var frag = Meteor.ui.render(function () {
+            return Template[template]?Template[template]():"";
+        });
+        document.getElementById('layout_content').appendChild(frag);
     }
 });
 
-Router = new AppRouter;
+AppRouter = LayoutRouter.extend({
+    routes: {
+        '': 'index',
+        //'login': 'login',
+        //'logout': 'logout',
+        'site/security': 'security',
+        'site/history': 'history',
+        '*path': 'error404'
+    },
+    index: function () {
+        this.render('index');
+    },
+    /*login: function () {
+        console.log('login');
+    },*/
+    /*logout: function () {
+        console.log('logout');
+        this.navigate('index');
+    },*/
+    security: function () {
+        this.render('security');
+    },
+    history: function () {
+        this.render('history');
+    },
+    error404: function () {
+        this.render('error404');
+    }
+});
 
-Template.content.content_is = function (data) {
-    return Session.equals('content', data);
+Template.layout_navigation.home = function () {
+    return true;
 };
+
+Router = new AppRouter;
 
 Meteor.startup(function (){
     Backbone.history.start({
