@@ -10,6 +10,7 @@ LayoutRouter = Backbone.Router.extend({
             return Template[template]();
         });
         document.getElementById('layout_content').appendChild(frag);
+        Session.set('view', template);
     }
 });
 
@@ -43,8 +44,8 @@ AppRouter = LayoutRouter.extend({
     }
 });
 
-Template.layout_navigation.view_is = function () {
-    return true;
+Template.layout_navigation.view_is = function (view) {
+    return Session.equals('view', view);
 };
 
 Router = new AppRouter;
