@@ -4,8 +4,10 @@ LayoutRouter = Backbone.Router.extend({
         document.getElementById('layout_content').innerHTML = "";
         
         template = template?template:"index";
+        if(Template[template] === undefined) throw "Invalid template name: " + template;
         var frag = Meteor.ui.render(function () {
-            return Template[template]?Template[template]():"";
+            //return Template[template]?Template[template]():"";
+            return Template[template]();
         });
         document.getElementById('layout_content').appendChild(frag);
     }
@@ -41,7 +43,7 @@ AppRouter = LayoutRouter.extend({
     }
 });
 
-Template.layout_navigation.home = function () {
+Template.layout_navigation.view_is = function () {
     return true;
 };
 

@@ -13,7 +13,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="/">comcure</a>
+                <a class="brand" href="/">IPLogin</a>
                 {{> layout_navigation}}
             </div>
         </div>
@@ -24,9 +24,9 @@
 <template name="layout_navigation">
     <div class="nav-collapse">
         <ul class="nav">
-            <li class="{{#if home}}active{{/if}}"><a href="/">Home</a></li>
-            <li class="{{#if security}}active{{/if}}"><a href="/site/security">Security</a></li>
-            <li class="{{#if history}}active{{/if}}"><a href="/site/history">History</a></li>
+            <li {{#if view_is "home"}}class="active"{{/if}}><a href="/">Home</a></li>
+            <li {{#if view_is "security"}}class="active"{{/if}}><a href="/site/security">Security</a></li>
+            <li {{#if view_is "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
             <!--li><a href="/logout">Logout</a></li>
             <li class="{{#if login}}active{{/if}}"><a href="/login">Login</a></li-->
         </ul>
