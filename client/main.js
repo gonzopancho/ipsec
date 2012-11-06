@@ -5,7 +5,7 @@ LayoutRouter = Backbone.Router.extend({
         
         template = template?template:"index";
         if(Template[template] === undefined) throw "Invalid template name: " + template;
-        var frag = Meteor.ui.render(function () {
+        var frag = Meteor.render(function () {
             //return Template[template]?Template[template]():"";
             return Template[template]();
         });
@@ -49,6 +49,10 @@ Template.layout_navigation.view_is = function (view) {
 };
 
 Router = new AppRouter;
+
+Accounts.ui.config({
+    passwordSignupFields: 'USERNAME_ONLY'
+});
 
 Meteor.startup(function (){
     Backbone.history.start({

@@ -27,8 +27,9 @@
             <li {{#if view_is "index"}}class="active"{{/if}}><a href="/">Home</a></li>
             <li {{#if view_is "security"}}class="active"{{/if}}><a href="/site/security">Security</a></li>
             <li {{#if view_is "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
-            <!--li><a href="/logout">Logout</a></li>
-            <li class="{{#if login}}active{{/if}}"><a href="/login">Login</a></li-->
+        </ul>
+        <ul class="nav pull-right">
+            <div style="padding-top:8px">{{loginButtons align="right"}}</div>
         </ul>
     </div><!--/.nav-collapse -->
 </template>
