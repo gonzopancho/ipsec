@@ -1,4 +1,4 @@
-meteor-test
+IPSec
 ===========
 
 This project is a porting of a php code to meteorjs. The main goal is to make a smooth transition between the two worlds.
