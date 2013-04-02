@@ -5,6 +5,7 @@
 
 autopublish
 bootstrap
-backbone
 accounts-password
 accounts-ui
+router
+appcache

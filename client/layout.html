@@ -18,15 +18,15 @@
             </div>
         </div>
     </div>
-    <div class="container" id="layout_content"></div>
+    <div class="container"> {{#isolate}} {{ renderPage }} {{/isolate}} </div>
 </body>
 
 <template name="layout_navigation">
     <div class="nav-collapse">
         <ul class="nav">
-            <li {{#if view_is "index"}}class="active"{{/if}}><a href="/">Home</a></li>
-            <li {{#if view_is "security"}}class="active"{{/if}}><a href="/site/security">Security</a></li>
-            <li {{#if view_is "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
+            <li {{#if active "index"}}class="active"{{/if}}><a href="/">Home</a></li>
+            <li {{#if active "security"}}class="active"{{/if}}><a href="/site/security">Security</a></li>
+            <li {{#if active "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
         </ul>
         <ul class="nav pull-right">
             <div style="padding-top:8px">{{loginButtons align="right"}}</div>
