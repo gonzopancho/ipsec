@@ -1,0 +1,1 @@
+Ips = new Meteor.Collection("ips");

@@ -6,82 +6,27 @@
         </div>
     </div>    
     <div class="row">
+        <div class="span">
+            <input type="text" name="ip" class="span3" placeholder="0.0.0.0/32">
+            <button class="btn btn-primary" id="add-rule">Add new rule</button>
+        </div>  
+    </div>
+    <div class="row">
         <div class="span5">
-            <div id="networks">
-                <table class="table table-striped">
-                    {{#each networks}}
-                    <tr data-id="{{id}}" data-ip="{{ip}}">
-                        <td> {{id}} </td>
-                        <td> {{ip}} </td>
-                        <td width="25%"> 
-                            <span class="btn-group">
-                                <a class="btn" data-type="edit"><i class="icon-edit"></i></a>
-                                <a class="btn" data-type="remove"><i class="icon-remove"></i></a>
-                            </span>
-                        </td>
-                    </tr>
-                    {{/each}}
-                </table>
-            </div>
-            <a class="btn btn-primary" data-toggle="modal" href="#modal-add">Add new rule</a>
+            <table class="table table-striped">
+                {{#each networks}}
+                <tr data-id="{{id}}" data-ip="{{ip}}">
+                    <td> {{id}} </td>
+                    <td> {{ip}} </td>
+                    <td width="25%"> 
+                        <span class="btn-group">
+                            <a class="btn" data-type="edit"><i class="icon-edit"></i></a>
+                            <a class="btn" data-type="remove"><i class="icon-remove"></i></a>
+                        </span>
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
         </div>
-    </div>
-
-
-    <div class="modal hide network" id="modal-edit">
-        <form action="user/security" method="post">
-            <div class="modal-header">
-                <a class="close" data-dismiss="modal">×</a>
-                <h3>Editing allowed IP</h3>
-            </div>
-            <div class="modal-body">
-                <p>Insert an IP or a network (using CIDR notation)</p>
-                <input type="text" name="ip" class="span3" placeholder="0.0.0.0/32">
-                <input type="hidden" name="id" value="">
-                <input type="hidden" name="action" value="edit">
-            </div>
-            <div class="modal-footer">
-                <button href="#" class="btn btn-primary">Save changes</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="modal hide network" id="modal-remove">
-        <form action="user/security" method="post">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Remove allowed IP</h3>
-            </div>
-            <div class="modal-body">
-                Are you sure?
-                <input type="hidden" name="id" value="">
-                <input type="hidden" name="action" value="remove">
-            </div>
-            <div class="modal-footer">
-                <button href="#" class="btn btn-danger">Remove</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="modal hide network" id="modal-add">
-        <form action="user/security" method="post">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3>Add allowed IP</h3>
-            </div>
-            <div class="modal-body">
-                <p>Insert an IP or a network (using CIDR notation)</p>
-                <input type="text" name="ip" class="span3" placeholder="0.0.0.0/32">
-                <input type="hidden" name="action" value="add">
-            </div>
-            <div class="modal-footer">
-                <button href="#" class="btn btn-primary">Add</button>
-            </div>
-        </form>
-    </div>
-
-    <div class="alert hide">
-        <button class="close" data-dismiss="alert">×</button>
-        <strong>Ops!</strong> <span class="msg"></span>
     </div>
 </template>

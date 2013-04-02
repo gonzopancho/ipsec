@@ -9,5 +9,12 @@ Template.layout_navigation.helpers({
     }
 });
 
+Template.layout_navigation.events({
+    'click #logout': function () {
+        Meteor.logout();
+    }
+});
+
+
 Meteor.startup(function (){});
 

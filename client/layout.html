@@ -29,7 +29,7 @@
             <li {{#if active "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
         </ul>
         <ul class="nav pull-right">
-            <div style="padding-top:8px">{{loginButtons align="right"}}</div>
+            <div style="padding-top:8px">{{#if currentUser}}<a id="logout">{{ currentUser.username }}(logout)</a>{{/if}}</div>
         </ul>
     </div><!--/.nav-collapse -->
 </template>

@@ -6,6 +6,6 @@
 autopublish
 bootstrap
 accounts-password
-accounts-ui
 router
-appcache
+accounts-ui-unstyled
+insecure
