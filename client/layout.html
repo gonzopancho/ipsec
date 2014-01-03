@@ -4,7 +4,7 @@
     <style> body { padding-top: 60px; } form { margin-bottom:0px; } </style>
 </head>
 
-<body>
+<template name="layout">
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -14,14 +14,14 @@
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" href="/">IPSec</a>
-                {{> layout_navigation}}
+                {{yield 'navbuttons'}}
             </div>
         </div>
     </div>
-    <div class="container"> {{#isolate}} {{ renderPage }} {{/isolate}} </div>
-</body>
+    <div class="container"> {{yield}} </div>
+</template>
 
-<template name="layout_navigation">
+<template name="navbuttons">
     <div class="nav-collapse">
         <ul class="nav">
             <li {{#if active "index"}}class="active"{{/if}}><a href="/">Home</a></li>
@@ -29,7 +29,9 @@
             <li {{#if active "history"}}class="active"{{/if}}><a href="/site/history">History</a></li>
         </ul>
         <ul class="nav pull-right">
-            <div style="padding-top:8px">{{#if currentUser}}<a id="logout">{{ currentUser.username }}(logout)</a>{{/if}}</div>
+            <div style="padding-top:8px">
+                <a id="logout">{{currentUser.username}}(logout)</a>
+            </div>
         </ul>
     </div><!--/.nav-collapse -->
 </template>

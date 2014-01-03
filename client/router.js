@@ -1,22 +1,51 @@
-Meteor.Router.add({
-    '/': 'index',
-    '/site/security': 'security',
-    '/site/history': 'history',
-    '*': 'error404'
-});
-
-Meteor.Router.filters({
-    'checkLoggedIn': function(page) {
-        if (Meteor.loggingIn()) {
-            return 'loading';
-        } else if (Meteor.user()) {
-            if(page == 'login')
-                return 'index';
-            return page;
-        } else {
-            return 'login';
+Router.configure({
+    layoutTemplate: 'layout',
+    //FIXME: a bug is invalidating yieldTemplates
+    //notFoundTemplate: 'error404',
+    yieldTemplates: {
+        navbuttons: {
+            to: 'navbuttons'
         }
+    },
+    before: function () {
+        if (Meteor.user())
+            return;
+
+        if (Router.current().route.name === 'login')
+            return;
+
+        Router.go('login');
+        return this.stop();
     }
 });
 
-Meteor.Router.filter('checkLoggedIn');
+Router.map(function () {
+    this.route('login', {
+        path: 'login',
+        before: function () {
+            if (!Meteor.user())
+                return;
+
+            Router.go('index');
+            return this.stop();
+        },
+        yieldTemplates: null
+    });
+
+    this.route('index', {
+        path: '/'
+    });
+
+    this.route('security', {
+        path: '/site/security'
+    });
+
+    this.route('history', {
+        path: '/site/history'
+    });
+
+    //FIXME: workaround until notFoundTemplate is fixed
+    this.route('error404', {
+        path: '*'
+    });
+});
